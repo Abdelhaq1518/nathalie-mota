@@ -1,4 +1,4 @@
-<div class="herobanner">
+<div class="banner">
         <h1>Photographe event</h1>
         <?php
         $photo_args = array(

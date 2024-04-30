@@ -1,0 +1,72 @@
+.filtre {
+  margin-bottom: 40px;
+}
+
+.custom-select {
+  width: 260px;
+  height: 43px;
+  border: 1.3px solid #b8bbc2 !important;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+/* Style pour le conteneur de chaque paire label/select */
+.taxonomy-container {
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 770px) {
+    width: 100%;
+  }
+}
+
+/* Styles pour le conteneur #filtrePhoto */
+#filtrePhoto {
+  padding-top: 20px;
+  width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+
+  @media screen and (max-width: 770px) {
+    width: 315px;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  @media screen and (min-width: 770px) and (max-width: 1140px) {
+    width: 715px;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 340px) {
+    //margin-bottom: 30px;
+    //padding-top: none;
+  }
+}
+
+/* Styles pour la section gauche contenant 'Catégorie' et 'Format' */
+.left-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+
+  @media screen and (max-width: 770px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    width: 100%;
+  }
+}
+
+/* Styles pour la section droite contenant 'Trier par' */
+.right-section {
+  align-items: flex-end;
+}
+
+/* Styles spécifiques pour le sélecteur 'Trier par' */
+#annees {
+  margin-left: auto;
+}

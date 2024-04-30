@@ -1,0 +1,34 @@
+﻿/*
+ Theme Name:   motatheme
+ Theme URI:    http://www.google.fr/
+ Author:       Muriel
+ Author URI:   http://www.google.fr/
+ Text Domain:  motatheme
+ Tags:         photo,mariage,reception,television
+
+*/
+
+
+// import des fonts google
+@import "partiels/fontGoogle";
+
+//variables globale
+:root{
+
+}
+
+// import des mixins
+@import "mixins/keyframes";
+
+// import des partiels
+@import "partiels/header";
+@import "partiels/footer";
+@import "partiels/body";
+@import "partiels/modale";
+@import "partiels/formulaire";
+@import "partiels/block";
+@import "partiels/filtre";
+@import "partiels/single";
+@import "partiels/lightbox";
+@import "partiels/selecteur";
+

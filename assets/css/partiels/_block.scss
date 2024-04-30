@@ -1,0 +1,110 @@
+
+/* Debut du CSS pour la partie Block */
+
+.banner {
+	height: 900px;
+	display: flex;
+	justify-content: center ;
+	align-items: center;
+	position: relative;
+
+	@media screen and (max-width: 770px) {
+	    height: 250px;
+	}
+
+	& img {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		object-fit: cover;
+		position: absolute;
+		top: 3px;
+		animation: AnimationVersBas 2s;
+		}
+}
+
+h1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	width: 85%;
+	height: 10%;
+	font-family: "space_monobold_italic", sans-serif;
+	font-style: italic;
+	font-weight: 700;
+	font-size: 6vw;
+	line-height: 10vh;
+	text-transform: uppercase;
+	color: transparent;
+	-webkit-text-stroke: 3px #ffffff;
+	-webkit-text-fill-color: transparent;
+	z-index: 1;
+	
+	animation: AnimationVersHaut 2s;
+
+	@media screen and (max-width: 770px) {
+	-webkit-text-stroke: 1px #ffffff;
+	}
+}
+
+.block_du_catalogue {
+	display: flex;
+	flex-wrap: wrap;
+	margin: auto;
+	justify-content: center;
+	margin-top: 43px;
+	gap: 10px;
+	}
+
+.Majuscule {
+  text-transform: uppercase;
+}
+
+
+@media screen and (max-width: 770px) {
+  #categorie {
+  	margin-right: 270px;
+  }
+}
+
+#format {
+	margin-left: -270px;
+}
+
+#more_images {
+	display: block;
+	position: relative;
+	width: 270px;
+	height: 50px;
+	line-height: 100%;
+	background-color:  #D8D8D8;
+	font-family: space_monoregular;
+	font-weight: 400;
+	font-size: 12px;
+	border-radius: 2px;
+	border: none;
+	margin: 0 auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
+
+	&:hover {
+		cursor: pointer;
+		background-color: black;
+		color: white;
+	}
+}
+
+#block_more_images{
+	width: 100%;
+}
+
+.option_default {
+	&:hover {
+		background-color: #FFD6D6;
+	}
+}
+
+
+/* Fin du CSS pour la partie Block */

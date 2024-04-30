@@ -1,0 +1,44 @@
+
+/* Debut du CSS pour le Formulaire */
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+}
+
+#wpcf7-f14-o1 form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    font-size: 12px;
+    font-family: PoppinsMedium;
+    font-weight: bolder;
+    line-height: 18px;
+}
+
+.wpcf7-submit {
+        background: #D8D8D8;
+        height: 50px;
+        width: 275px;
+        border: 1px solid #B8BBC2;
+}
+
+.formulaireCF7TextSimple, .formulaireCF7TextArea {
+  width: 100%;
+  border-radius: 8px;
+  width: 270px ;
+  border: 1px solid #B8BBC2;
+  resize: none;
+}
+
+.formulaireCF7TextSimple {
+  height: 37px;
+  text-transform: uppercase;
+}
+
+.formulaireCF7TextArea {
+  height: 250px;
+}
+
+/* Fin du CSS pour le Formulaire */
