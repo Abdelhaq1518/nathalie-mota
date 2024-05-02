@@ -11,7 +11,7 @@ $categorie_name = $categories[0]->name;
 <div class="blockSimilaire">
     <img src="<?php echo esc_url($photo_url); ?>" alt="<?php the_title_attribute(); ?>">
 
-    <div class="photOverlay">
+    <div class="photphotOverlay">
 
         <h2 class="Majuscule"><?php echo esc_html($photo_titre); ?></h2>
         <h3 class="Majuscule"><?php echo esc_html($categorie_name); ?></h3>

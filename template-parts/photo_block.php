@@ -8,23 +8,25 @@ $categorie_name = $categories[0]->name;
 
 ?>
 
-            <div class="block_relative_photo">
-                <img src="<?php echo esc_url($photo_url); ?>" alt="<?php the_title_attribute(); ?>">
+<div class="blocSimilaire">
+    <img src="<?php echo esc_url($photo_url); ?>" alt="<?php the_title_attribute(); ?>">
 
-                <div class="overlay">
+    <div class="photOverlay">
 
-                    <h2 class="Majuscule"><?php echo esc_html($photo_titre); ?></h2>
-                    <h3 class="Majuscule"><?php echo esc_html($categorie_name); ?></h3>
+        <h2 class="Majuscule"><?php echo esc_html($photo_titre); ?></h2>
+        <h3 class="Majuscule"><?php echo esc_html($categorie_name); ?></h3>
 
-                    <div class="eye-icon">
-                        <a href="<?php echo esc_url(get_permalink()); ?>">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/icon_eye.svg" alt="voir la photo">
-                        </a>
-                    </div>
-                    <div class="fullscreen-icon" data-full="<?php echo esc_url($photo_url); ?>" data-category="<?php echo esc_attr($categorie_name); ?>" data-reference="<?php echo esc_attr($reference); ?>">
-                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/fullscreen.svg" alt="Icone fullscreen">
-                    </div>
-                </div>
-            </div>
-            
-       
+        <div class="eye-icon">
+            <a href="<?php echo esc_url(get_permalink()); ?>">
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/eye-icon.png"
+                    alt="voir la photo">
+            </a>
+        </div>
+        <div class="fullscreen-icon" data-full="<?php echo esc_url($photo_url); ?>"
+            data-category="<?php echo esc_attr($categorie_name); ?>"
+            data-reference="<?php echo esc_attr($reference); ?>">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/fullscreen-icon.png"
+                alt="Icone fullscreen">
+        </div>
+    </div>
+</div>

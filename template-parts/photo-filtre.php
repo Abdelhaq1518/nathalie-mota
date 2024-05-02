@@ -6,8 +6,8 @@ $taxonomy = [
     'annees' => 'TRIER PAR',
 ];
 
-// Début du conteneur #filtrePhoto
-echo "<div id='filtrePhoto'>";
+// Début du conteneur #filtre
+echo "<div id='filtre'>";
 
 // Section gauche
 echo "<div class='left-section'>";
@@ -15,7 +15,7 @@ foreach ($taxonomy as $taxonomy_slug => $label) {
     $terms = get_terms($taxonomy_slug);
     if ($terms && !is_wp_error($terms)) {
 
-        echo "<select id='$taxonomy_slug' class='custom-select taxonomy-select'>";
+        echo "<select id='$taxonomy_slug' class='selector taxonomy-select'>";
 
         echo "<option value=''>$label</option>";
         foreach ($terms as $term) {
@@ -31,9 +31,9 @@ echo "</div>";
 // Section droite
 echo "<div class='right-section'>";
 // Classe CSS spécifique pour la taxonomie 'annees'
-$select_class_annees = 'custom-select annees-select';
+$select_class_annees = 'selector annees-select';
 // Début du conteneur pour la taxonomie 'annees'
-echo "<div class='taxonomy-container'>";
+echo "<div class='containerTaxonomie'>";
 // Afficher le select avec l'ID et la classe appropriés
 echo "<select id='annees' class='$select_class_annees'>";
 // Option par défaut avec le label de la taxonomie 'annees'
@@ -48,6 +48,6 @@ echo "</div>";
 // Fin de la section droite
 echo "</div>";
 
-// Fin du conteneur #filtrePhoto
+// Fin du conteneur #filtre
 echo "</div>";
 ?>
