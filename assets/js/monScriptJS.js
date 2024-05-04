@@ -44,7 +44,7 @@ console.log("menu Burger JS chargé");
 
 $(document).ready(function () {
     const header = $('header');
-    const menuBurger = $('.menu_burger');
+    const menuBurger = $('.burgerMenu');
     const nav = $('.navigation');
     const menuLinks = $('.menu_navigation li a');
 
@@ -63,11 +63,11 @@ $(document).ready(function () {
 console.log("Affichage Miniature JS chargé");
 
 $(document).ready(function() {
-    const miniPicture = $('#miniPicture');
+    const miniature = $('#miniature');
 
     $('.arrow-left, .arrow-right').hover(
         function() {
-            miniPicture.css({
+            miniature.css({
                 visibility: 'visible',
                 opacity: 1
             }).html(`<a href="${$(this).data('target-url')}">
@@ -75,7 +75,7 @@ $(document).ready(function() {
                     </a>`);
         },
         function() {
-            miniPicture.css({
+            miniature.css({
                 visibility: 'hidden',
                 opacity: 0
             });
@@ -114,7 +114,7 @@ jQuery(document).ready(function ($) {
       },
       success: function (response) {
         // Mettez à jour la section des photos avec les résultats filtrés
-        $("#containerPhoto").html(response);
+        $("#photoContainer").html(response);
       },
       error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.status);
@@ -126,7 +126,7 @@ jQuery(document).ready(function ($) {
         // Si les valeurs sont les valeurs par défaut, relancer le conteneur photo
         if (isDefaultValues) {
           // Mettez à jour la section des photos avec le contenu par défaut
-          $("#containerPhoto").load(window.location.href + " #containerPhoto");
+          $("#photoContainer").load(window.location.href + " #photoContainer");
         }
       },
     });
@@ -143,14 +143,13 @@ $(function () {
   });
 });
 
+// Ouverture et fermeture de la lightbox//
 
-
-/* Lightbox */
-console.log("Lightbox JS chargé");
+console.log("Lightbox Ouverture et Fermeture : son js est chargé");
 
 $(document).ready(function() {
     var $lightbox = $('#lightbox');
-    var $lightboxImage = $('.lightboxImage');
+    var $lightboxImg = $('.lightboxImg');
     var $lightboxCategory = $('.lightboxCategorie');
     var $lightboxReference = $('.lightboxReference');
     var currentIndex = 0; 
@@ -162,7 +161,7 @@ $(document).ready(function() {
         var categoryText = $image.data('category').toUpperCase();
         var referenceText = $image.data('reference').toUpperCase();
 
-        $lightboxImage.attr('src', $image.data('full'));
+        $lightboxImg.attr('src', $image.data('full'));
         $lightboxCategory.text(categoryText);
         $lightboxReference.text(referenceText);
         currentIndex = index;
@@ -191,9 +190,9 @@ $(document).ready(function() {
 
     attachEventsToImages();
 
-    $('.fermelightbox').on('click', fermetureLightbox);
+    $('.closeLightbox').on('click', fermetureLightbox);
 
-    $('.lightboxPrecedent').on('click', function() {
+    $('.lightboxPrevious').on('click', function() {
         var $images = $('.fullscreen-icon');
         if (currentIndex > 0) {
             updateLightbox(currentIndex - 1);
@@ -202,7 +201,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.lightboxSuivant').on('click', function() {
+    $('.lightboxNext').on('click', function() {
         var $images = $('.fullscreen-icon');
         if (currentIndex < $images.length - 1) {
             updateLightbox(currentIndex + 1);
@@ -212,4 +211,9 @@ $(document).ready(function() {
     });
 
 });
+
+
+
+
+
 
