@@ -15,25 +15,25 @@
 get_header();
 ?>
 
-<main>
+	<main>
 
-	<section id="header">
-		<?php get_template_part('template-parts/hero'); ?>
-	</section>
+		<section id="header">
+					<?php get_template_part('template-parts/hero'); ?>
+		</section>
 
-	<section id="filter_photos">
-		<?php get_template_part('template-parts/photo-filtre'); ?>
-	</section>
+		<section id="filter_photos">
+					<?php get_template_part('template-parts/photo-filtre'); ?>
+		</section>
 
-	<section id="photoContainer" class="block_du_catalogue">
-		<?php get_template_part('template-parts/photo-container'); ?>
-	</section>
+		<section id="containerPhoto" class="block_du_catalogue">
+					<?php get_template_part('template-parts/photo-container'); ?>
+		</section>
 
-	<script>
-		var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-	</script>
-
-</main>
+    <script>
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+    </script>
+    
+	</main>
 
 <?php
 get_footer();

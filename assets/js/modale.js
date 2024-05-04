@@ -4,11 +4,11 @@ console.log("modale Contact JS chargé");
 $(document).ready(function() {
     const lienContact = $('#menu-item-8');
     const boutonContact = $('#boutonContact');
-    const modalphotOverlay = $('.popup-photOverlay');
+    const modalOverlay = $('.popup-overlay');
     const referencePhoto = $('#referencePhoto');
 
     const openModal = function() {
-        modalphotOverlay.css('display', 'flex');
+        modalOverlay.css('display', 'flex');
 
         if (boutonContact.attr('data-reference') && boutonContact.attr('data-reference').trim() !== "") {
             referencePhoto.val(boutonContact.attr('data-reference'));
@@ -16,7 +16,7 @@ $(document).ready(function() {
     };
 
     const closeModal = function() {
-        modalphotOverlay.css('display', 'none');
+        modalOverlay.css('display', 'none');
     };
 
     lienContact.on('click', function(event) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
     $(window).on('click', function(event) {
-        if (event.target === modalphotOverlay[0]) {
+        if (event.target === modalOverlay[0]) {
             closeModal();
         }
     });
