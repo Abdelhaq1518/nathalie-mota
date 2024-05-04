@@ -146,7 +146,7 @@ header .headerNav .navigation .menu_navigation li a:hover {
     }
   }
   header .headerNav .burgerMenu {
-    width: 30px;
+    width: 15px; /* Reduire la largeur */
     height: 20px;
     display: flex !important;
     flex-direction: column;
@@ -197,6 +197,7 @@ header .headerNav .navigation .menu_navigation li a:hover {
     color: #fff !important;
   }
 }
+
 
 /* Tablette */
 @media only screen and (min-width: 768px) and (max-width: 960px) {
