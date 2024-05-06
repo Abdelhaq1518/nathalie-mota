@@ -285,8 +285,8 @@ p {
     0,
     3,
     0.8
-  ); /* #00000388;   c'est ca qui fait un aspect d'Overlay */
-  display: none; /* elle sera activer par Jquery avec la methode css('display', 'flex'); */
+  ); /* #00000388;   c'est ce qui fait l'effet d'Overlay */
+  display: none; /* elle sera activée par Jquery en css('display', 'flex'); */
   justify-content: center;
   align-items: center;
   z-index: 9999;
@@ -535,9 +535,7 @@ h1 {
   margin-left: auto;
 }
 
-/* CSS pour la page single-photo */
 
-/* CSS pour la page single-photo */
 /* CSS pour la page single-photo */
 
 .gallerie {
@@ -593,44 +591,6 @@ h1 {
   .catalogue {
     max-width: 375px;
   }
-}
-
-.singlePhotoOverlay {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0);
-  opacity: 0;
-  transition: background-color 0.3s, opacity 0.3s;
-  cursor: pointer;
-}
-@media screen and (max-width: 765px) {
-  .singlePhotoOverlay {
-    left: 0;
-    width: 100%;
-    position: relative;
-  }
-}
-.singlePhotoOverlay:hover {
-  opacity: 0.8;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.singlePhotoOverlay:hover .fullscreen-icon {
-  display: block;
-}
-.singlePhotoOverlay .fullscreen-icon {
-  display: none;
-  left: 85%;
-  position: absolute;
-  top: 2%;
-  width: 34px;
-  height: 34px;
 }
 
 .photoContainer:hover .fullscreen-iconSingle {
@@ -835,7 +795,8 @@ h1 {
 
 
 
-/* Debut du  CSS pour la LightBox */
+/*Debut du  CSS pour les  photos de la catégorie apparentée*/
+
 .photoSimilaire {
   margin: 0;
   width: 100%;
@@ -850,7 +811,7 @@ h1 {
   }
 }
 
-.block_relative_photo {
+.blocPhotoSimilaire {
   flex-shrink: 0;
   position: relative;
   width: 564px;
@@ -858,23 +819,23 @@ h1 {
   margin-bottom: 10px;
 }
 @media screen and (min-width: 765px) and (max-width: 1140px) {
-  .block_relative_photo {
+  .blocPhotoSimilaire {
     width: 370px;
   }
 }
 @media screen and (max-width: 765px) {
-  .block_relative_photo {
+  .blocPhotoSimilaire {
     width: 318px;
     height: 279px;
   }
 }
-.block_relative_photo img {
+.blocPhotoSimilaire img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.block_relative_photo .overlay:hover .eye-icon,
-.block_relative_photo .overlay:hover .fullscreen-icon {
+.blocPhotoSimilaire .overlay:hover .eye-icon,
+.blocPhotoSimilaire .overlay:hover .fullscreen-icon {
   display: block;
 }
 
@@ -974,6 +935,7 @@ h1 {
     left: 317px;
   }
 }
+/* Debut du  CSS pour la LightBox */
 
 .lightbox {
   display: none;
