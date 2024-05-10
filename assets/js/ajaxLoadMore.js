@@ -1,6 +1,6 @@
 
 //  Chargement de plus d'images avec Ajax
-console.log("Chargement de plus d'images avec Ajax : le script est lancé");
+console.log("ajaxLoadMore : le script est lancé");
 
 (function($) {
     $('#more_images').click(function() {

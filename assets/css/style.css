@@ -324,7 +324,7 @@ p {
   flex-direction: column;
 }
 
-#wpcf7-f14-o1 form {
+#wpcf7-f82-o1 form {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -342,7 +342,7 @@ p {
   border: 1px solid #b8bbc2;
 }
 
-.formulaireCF7TextSimple,
+.formulaireCF7text,
 .formulaireCF7TextArea {
   width: 100%;
   border-radius: 8px;
@@ -351,7 +351,7 @@ p {
   resize: none;
 }
 
-.formulaireCF7TextSimple {
+.formulaireCF7text {
   height: 37px;
   text-transform: uppercase;
 }
@@ -737,7 +737,7 @@ h1 {
   transition: visibility 0.3s, opacity 0.3s linear;
   width: 81px;
   height: 71px;
-  padding-top: 20px; 
+  padding-top: 5px; 
 }
 
 
