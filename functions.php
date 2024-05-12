@@ -90,7 +90,7 @@ function filter_photos_function()
     $filter = $_POST['filter'];
 
     $args = array(
-        'post_type' => 'motaphoto',
+        'post_type' => 'photos',
         'posts_per_page' => -1,
         'tax_query' => array(
             'relation' => 'AND',

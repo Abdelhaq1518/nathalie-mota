@@ -14,7 +14,7 @@ $reference = get_field('reference');
 $type = get_field('type');
 
 // Taxonomies
-$annee = get_the_terms(get_the_ID(), 'anneee');
+$annee = get_the_terms(get_the_ID(), 'annee');
 $annee_name = $annee[0]->name;
 
 $categories = get_the_terms(get_the_ID(), 'categorie');
@@ -98,7 +98,7 @@ $nextThumbnailURL = $nextPost ? get_the_post_thumbnail_url($nextPost->ID, 'thumb
 			if ($categories && !is_wp_error($categories)) {
 				$category_ids = wp_list_pluck($categories, 'term_id');
 				$args = array(
-					'post_type' => 'motaphoto',
+					'post_type' => 'photos',
 					'posts_per_page' => 2,
 					'orderby' => 'rand',
 					'post__not_in' => array(get_the_ID()),
