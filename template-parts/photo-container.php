@@ -9,8 +9,8 @@ $args = array(
 $photo_block = new WP_Query($args);
 
 wp_localize_script(
-    'Ajax-charge-plus-images',
-    'ajaxloadmore',
+    'ajaxLoadMore',
+    'ajaxLoadMore',
     array(
         'ajaxurl' => admin_url('admin-ajax.php'),
         'query_vars' => json_encode($args)
