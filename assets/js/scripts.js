@@ -149,76 +149,73 @@ $(function () {
 });
 
 // Ouverture et fermeture de la lightbox//
-
 console.log("Lightbox Ouverture et Fermeture : son js est chargé");
 
 $(document).ready(function() {
-    var $lightbox = $('#lightbox');
-    var $lightboxImg = $('.lightboxImg');
-    var $lightboxCategory = $('.lightboxCategorie');
-    var $lightboxReference = $('.lightboxReference');
-    var currentIndex = 0; 
+    const $lightbox = $("#lightbox");
+    const $lightboxImg = $(".lightboxImg");
+    const $lightboxCategory = $(".lightboxCategorie");
+    const $lightboxReference = $(".lightboxReference");
+    let currentIndex = 0;
 
+    // Fonction pour mettre à jour le contenu de la lightbox en fonction de l'index de l'image
     function updateLightbox(index) {
-        var $images = $('.fullscreen-icon');
-        var $image = $images.eq(index);
-        
-        var categoryText = $image.data('category').toUpperCase();
-        var referenceText = $image.data('reference').toUpperCase();
+        const $images = $(".fullscreen-icon");
+        const $image = $images.eq(index);
+        const categoryText = $image.data("category").toUpperCase();
+        const referenceText = $image.data("reference").toUpperCase();
 
-        $lightboxImg.attr('src', $image.data('full'));
+        $lightboxImg.attr("src", $image.data("full"));
         $lightboxCategory.text(categoryText);
         $lightboxReference.text(referenceText);
         currentIndex = index;
     }
 
+    // Fonction pour ouvrir la lightbox avec une image spécifique (index)
     function openLightbox(index) {
         updateLightbox(index);
         $lightbox.show();
     }
 
-    function fermetureLightbox() {
+    // Fonction pour fermer la lightbox
+    function closeLightbox() {
         $lightbox.hide();
     }
 
-    window.attachEventsToImages = function() {
-        var $images = $('.fullscreen-icon');
-        $images.off('click', imageClickHandler); 
-        $images.on('click', imageClickHandler);
-    };
+    // Gestionnaire d'événement pour le changement de sélection des catégories
+    $(".taxonomy-select").on("change", function() {
+        alert("Changement de sélection de catégorie détecté !");
+        const selectedCategory = $(this).val();
+        const $images = $(".fullscreen-icon");
 
-    function imageClickHandler() {
-        var $images = $('.fullscreen-icon');
-        var index = $images.index($(this).closest('.fullscreen-icon'));
-        openLightbox(index);
-    }
+        // Filtrer les images en fonction de la catégorie sélectionnée
+        const $filteredImages = $images.filter(`[data-category="${selectedCategory}"]`);
 
-    attachEventsToImages();
-
-    $('.closeLightbox').on('click', fermetureLightbox);
-
-    $('.lightboxPrevious').on('click', function() {
-        var $images = $('.fullscreen-icon');
-        if (currentIndex > 0) {
-            updateLightbox(currentIndex - 1);
-        } else {
-            updateLightbox($images.length - 1);
+        // Si des images correspondent à la catégorie sélectionnée, ouvrir la lightbox avec la première image
+        if ($filteredImages.length > 0) {
+            openLightbox($images.index($filteredImages.first()));
         }
     });
 
-    $('.lightboxNext').on('click', function() {
-        var $images = $('.fullscreen-icon');
-        if (currentIndex < $images.length - 1) {
-            updateLightbox(currentIndex + 1);
-        } else {
-            updateLightbox(0);
-        }
+    // Gestionnaire d'événement pour le clic sur le bouton de fermeture
+    $(".closeLightbox").on("click", function() {
+        alert("Fermeture de la lightbox !");
+        closeLightbox();
     });
 
+    // Gestionnaire d'événement pour le clic sur le bouton précédent
+    $(".lightboxPrevious").on("click", function() {
+        alert("Clic sur le bouton précédent !");
+        const $images = $(".fullscreen-icon");
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : $images.length - 1;
+        updateLightbox(currentIndex);
+    });
+
+    // Gestionnaire d'événement pour le clic sur le bouton suivant
+    $(".lightboxNext").on("click", function() {
+        alert("Clic sur le bouton suivant !");
+        const $images = $(".fullscreen-icon");
+        currentIndex = currentIndex < $images.length - 1 ? currentIndex + 1 : 0;
+        updateLightbox(currentIndex);
+    });
 });
-
-
-
-
-
-

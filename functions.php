@@ -27,10 +27,10 @@ function mesScriptsJS()
 {
 
     // script pour Mota (script JQuery)
-    wp_enqueue_script('monScriptJS', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('ScriptsJS', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0.0', true);
 
     // Chargement de plus d'images avec Ajax (script JQuery)
-    wp_enqueue_script('Ajax-charge-plus-images', get_stylesheet_directory_uri() . '/assets/js/ajaxLoadMore.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('ajaxLoadMore', get_stylesheet_directory_uri() . '/assets/js/ajaxLoadMore.js', array('jquery'), '1.0.0', true);
 
 }
 add_action('wp_enqueue_scripts', 'mesScriptsJS');
