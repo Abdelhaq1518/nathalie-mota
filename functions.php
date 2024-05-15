@@ -32,8 +32,18 @@ function mesScriptsJS()
     // Chargement de plus d'images avec Ajax (script JQuery)
     wp_enqueue_script('ajaxLoadMore', get_stylesheet_directory_uri() . '/assets/js/ajaxLoadMore.js', array('jquery'), '1.0.0', true);
 
+    // Localisation du script pour AJAX
+    wp_localize_script(
+        'ajaxLoadMore',
+        'ajaxLoadMore',
+        array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+
+        )
+    );
 }
 add_action('wp_enqueue_scripts', 'mesScriptsJS');
+
 
 // Astuce pour eviter d'avoir des <p> partout dans CF7
 add_filter('wpcf7_autop_or_not', '__return_false');
@@ -52,16 +62,16 @@ add_action('after_setup_theme', 'enregistrement_nav_menus');
 
 
 /* Chargement photos Ajax load more */
-
 function load_more_photos()
 {
-    $paged = $_POST['page'] + 1;
+    $paged = isset($_POST['page']) ? intval($_POST['page']) + 1 : 1;
     $query_vars = json_decode(stripslashes($_POST['query']), true);
+
     $query_vars['paged'] = $paged;
     $query_vars['posts_per_page'] = 8;
-    $query_vars['orderby'] = 'date';
 
     $photos = new WP_Query($query_vars);
+
     if ($photos->have_posts()) {
         ob_start();
         while ($photos->have_posts()) {
@@ -69,19 +79,19 @@ function load_more_photos()
             get_template_part('template-parts/photo_block', null);
         }
         wp_reset_postdata();
+        $output = ob_get_clean();
 
-        $output = ob_get_clean(); // Get the buffer and clean it
-        echo $output; // Echo the output
+        $is_last_page = $photos->max_num_pages <= $paged;
+
+        wp_send_json_success(array('html' => $output, 'is_last_page' => $is_last_page));
     } else {
-        ob_clean(); // Clean any previous output
-        echo 'no_posts';
+        wp_send_json_error('no_posts');
     }
-    die();
 
+    wp_die();
 }
 add_action('wp_ajax_nopriv_load_more', 'load_more_photos');
 add_action('wp_ajax_load_more', 'load_more_photos');
-
 /* Filtres */
 
 function filter_photos_function()
@@ -94,6 +104,7 @@ function filter_photos_function()
         'posts_per_page' => -1,
         'tax_query' => array(
             'relation' => 'AND',
+
         )
     );
 

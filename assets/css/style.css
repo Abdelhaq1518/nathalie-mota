@@ -1269,10 +1269,7 @@ h1 {
   text-transform: uppercase;
 }
 
-/* Styles pour la largeur de la container Select2 */
-.select2-container {
-  width: 100% !important;
-}
+
 
 /* Styles pour la première option dans le menu déroulant */
 .select2-container--default

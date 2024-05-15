@@ -1,5 +1,4 @@
-
-//  Chargement de plus d'images avec Ajax
+// Chargement de plus d'images avec Ajax
 console.log("ajaxLoadMore : le script est lancé");
 
 (function($) {
@@ -7,31 +6,34 @@ console.log("ajaxLoadMore : le script est lancé");
         var button = $(this),
             data = {
                 'action': 'load_more',
-                'query': ajaxloadmore.query_vars,
+                'query': ajaxLoadMore.query_vars,
                 'page': button.data('page')
             };
 
         $.ajax({
-            url: ajaxurl,
+            url: ajaxLoadMore.ajaxurl,
             data: data,
             type: 'POST',
             beforeSend: function(xhr) {
                 button.text('Chargement...');
             },
-            success: function(data) {
-                if (data === 'no_posts') {
-                    button.remove();
-                } else if(data) {
-                    button.data('page', button.data('page') + 1);
-                    $('#block_more_images').before($(data));
+            success: function(response) {
+                if (response.success) {
+                    button.data('page', button.data('page') - 1);
+                    $('#block_more_images').before($(response.data.html));
                     button.text('Charger plus');
-                    attachEventsToImages(); 
+                    
+                    if (response.data.is_last_page) {
+                        button.remove();
+                    }
                 } else {
                     button.text('Plus de photos à charger');
+                    button.prop('disabled', true);
                 }
+            },
+            error: function() {
+                button.text('Erreur de chargement');
             }
         });
     });
 })(jQuery);
-
-
