@@ -97,46 +97,56 @@ $(document).ready(function() {
 console.log("filtres JS chargé");
 
 jQuery(document).ready(function ($) {
-  $("#categorie, #format, #annees").on("change", function () {
-    // Capturer les valeurs des filtres
-    const categorie = $("#categorie").val();
-    const format = $("#format").val();
-    const years = $("#annees").val();
-    console.log(categorie);
-    // Vérifier si les valeurs sont les valeurs par défaut
-    const isDefaultValues = categorie === "" && format === "" && years === "";
+  function handleFilter(paged) {
+      const categorie = $("#categorie").val();
+      const format = $("#format").val();
+      const years = $("#annees").val();
+      const page = paged ? $("#more_images").data("page") : 1;
 
-    $.ajax({
-      url: ajaxurl,
-      type: "post",
-      data: {
-        action: "filter_photos",
-        filter: {
-          categorie: categorie,
-          format: format,
-          years: years,
-        },
-      },
-      success: function (response) {
-        // Mettez à jour la section des photos avec les résultats filtrés
-        $("#photoContainer").html(response);
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        console.log(xhr.status);
-        console.log(thrownError);
-        console.log(ajaxOptions);
-        console.log(xhr.responseText);
-      },
-      complete: function () {
-        // Si les valeurs sont les valeurs par défaut, relancer le conteneur photo
-        if (isDefaultValues) {
-          // Mettez à jour la section des photos avec le contenu par défaut
-          $("#photoContainer").load(window.location.href + " #photoContainer");
-        }
-      },
-    });
+      $.ajax({
+          url: ajaxLoadMore.ajaxurl,
+          type: "post",
+          data: {
+              action: "filter_photos",
+              filter: {
+                  categorie: categorie,
+                  format: format,
+                  years: years,
+              },
+              page: page
+          },
+          success: function (response) {
+              if (paged) {
+                  $("#photoContainer").append(response);
+              } else {
+                  $("#photoContainer").html(response);
+              }
+
+              const moreImages = $("#block_more_images");
+              if (moreImages.length && !paged) {
+                  moreImages.show();
+              } else {
+                  moreImages.hide();
+              }
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+              console.log(xhr.status);
+              console.log(thrownError);
+              console.log(ajaxOptions);
+              console.log(xhr.responseText);
+          }
+      });
+  }
+
+  $("#categorie, #format, #annees").on("change", function () {
+      handleFilter(false);
+  });
+
+  $(document).on('click', '#more_images', function () {
+      handleFilter(true);
   });
 });
+
 
 // gestion du select2
 console.log("select2 JS chargé");

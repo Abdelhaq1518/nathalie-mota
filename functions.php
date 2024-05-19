@@ -92,23 +92,25 @@ function load_more_photos()
 }
 add_action('wp_ajax_nopriv_load_more', 'load_more_photos');
 add_action('wp_ajax_load_more', 'load_more_photos');
-/* Filtres */
 
+/* Filtres */
 function filter_photos_function()
 {
+    // Initialisation des variables de filtrage et de pagination
+    $filter = isset($_POST['filter']) ? $_POST['filter'] : array();
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
-    $filter = $_POST['filter'];
-
+    // Définition des arguments de la requête
     $args = array(
         'post_type' => 'photos',
-        'posts_per_page' => -1,
+        'posts_per_page' => 8,
+        'paged' => $page,
         'tax_query' => array(
             'relation' => 'AND',
-
         )
     );
 
-    // Ajoute chaque filtre a la tax query si elle est definie
+    // Filtrage par catégorie
     if (!empty($filter['categorie'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'categorie',
@@ -117,6 +119,12 @@ function filter_photos_function()
         );
     }
 
+    // Filtrage par années
+    if (!empty($filter['years'])) {
+        $args['order'] = ($filter['years'] == 'date_desc') ? 'ASC' : 'DESC';
+    }
+
+    // Filtrage par format
     if (!empty($filter['format'])) {
         $args['tax_query'][] = array(
             'taxonomy' => 'format',
@@ -125,26 +133,36 @@ function filter_photos_function()
         );
     }
 
-    // Ajoutez la taxonomie pour l'année si elle est spécifiée
-    if (!empty($filter['years'])) {
-        $args['order'] = ($filter['years'] == 'date_desc') ? 'ASC' : 'DESC';
-    }
-
+    // Exécution de la requête
     $query = new WP_Query($args);
+
+    ob_start();
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
-
+            // Utilisation du template-part photo_block
             get_template_part('template-parts/photo_block', null);
         }
         wp_reset_postdata();
     } else {
-        echo '<p class="critereFiltrage">Aucune photo ne correspond aux criteres de filtrage</p>';
+        echo '<p class="critereFiltrage">Aucune photo ne correspond aux critères de filtrage</p>';
     }
+
+    // Vérification de la pagination et affichage du bouton "Charger plus"
+    if ($query->max_num_pages > $page) {
+        $next_page = $page + 1;
+        echo '<div id="block_more_images">';
+        echo '<button id="more_images" data-page="' . $next_page . '" data-url="' . admin_url('admin-ajax.php') . '" data-filtered="1" >Charger plus</button>';
+        echo '</div>';
+    }
+
+    $response = ob_get_clean();
+    echo $response;
 
     die();
 }
 
 add_action('wp_ajax_filter_photos', 'filter_photos_function');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos_function');
+
