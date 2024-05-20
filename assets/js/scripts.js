@@ -146,8 +146,6 @@ jQuery(document).ready(function ($) {
   });
 });
 
-
-
 // gestion du select2
 console.log("select2 JS chargé");
 $(function () {

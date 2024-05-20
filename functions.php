@@ -108,7 +108,7 @@ function filter_photos_function()
         'tax_query' => array(
             'relation' => 'AND',
         ),
-        'meta_query' => array(),
+        'meta_query' => array(),  // Ajouter la meta_query pour le tri par champ personnalisé
     );
 
     // Filtrage par catégorie
@@ -129,18 +129,15 @@ function filter_photos_function()
         );
     }
 
-    // Tri par années (taxonomie)
+    // Tri par années (champ ACF)
     if (!empty($filter['years'])) {
         $order = ($filter['years'] == 'date_desc') ? 'ASC' : 'DESC';
-
-        // Ajout de la meta_query pour trier par la taxonomie "annee"
         $args['meta_query'][] = array(
-            'key' => 'annee_photo', // Nom du champ ACF pour l'année
+            'key' => 'annee_photo',  // Nom du champ ACF pour l'année
             'type' => 'NUMERIC',
         );
-
         $args['orderby'] = array(
-            'meta_value_num' => $order, // Trier par la valeur du champ ACF
+            'meta_value_num' => $order,  // Trier par la valeur du champ ACF
         );
     }
 
