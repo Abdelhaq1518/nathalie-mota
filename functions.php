@@ -64,29 +64,71 @@ add_action('after_setup_theme', 'enregistrement_nav_menus');
 /* Chargement photos Ajax load more */
 function load_more_photos()
 {
-    $paged = isset($_POST['page']) ? intval($_POST['page']) + 1 : 1;
-    $query_vars = json_decode(stripslashes($_POST['query']), true);
+    // Récupération de la page courante
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
-    $query_vars['paged'] = $paged;
-    $query_vars['posts_per_page'] = 8;
+    // Définir les arguments de la requête
+    $args = array(
+        'post_type' => 'photos',
+        'posts_per_page' => 8,
+        'paged' => $paged,
+    );
 
-    $photos = new WP_Query($query_vars);
+    // Ajouter les filtres si nécessaires
+    if (isset($_POST['filter'])) {
+        $filter = $_POST['filter'];
 
-    if ($photos->have_posts()) {
-        ob_start();
-        while ($photos->have_posts()) {
-            $photos->the_post();
+        // Filtrage par catégorie
+        if (!empty($filter['categorie'])) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'categorie',
+                'field' => 'slug',
+                'terms' => $filter['categorie'],
+            );
+        }
+
+        // Filtrage par format
+        if (!empty($filter['format'])) {
+            $args['tax_query'][] = array(
+                'taxonomy' => 'format',
+                'field' => 'slug',
+                'terms' => $filter['format'],
+            );
+        }
+
+        // Filtrage par année
+        if (!empty($filter['years'])) {
+            $args['orderby'] = 'date';
+            $args['order'] = ($filter['years'] == 'date_desc') ? 'DESC' : 'ASC';
+        }
+    }
+
+    // Exécution de la requête
+    $query = new WP_Query($args);
+
+    ob_start();
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            // Utilisation du template-part photo_block
             get_template_part('template-parts/photo_block', null);
         }
         wp_reset_postdata();
-        $output = ob_get_clean();
-
-        $is_last_page = $photos->max_num_pages <= $paged;
-
-        wp_send_json_success(array('html' => $output, 'is_last_page' => $is_last_page));
     } else {
-        wp_send_json_error('no_posts');
+        echo '<p class="critereFiltrage">Aucune photo ne correspond aux critères de filtrage</p>';
     }
+
+    // Vérification de la pagination et affichage du bouton "Charger plus"
+    if ($query->max_num_pages > $paged) {
+        $next_page = $paged + 1;
+        echo '<div id="block_more_images">';
+        echo '<button id="more_images" data-page="' . $next_page . '" data-url="' . admin_url('admin-ajax.php') . '" data-filtered="1">Charger plus</button>';
+        echo '</div>';
+    }
+
+    $response = ob_get_clean();
+    echo $response;
 
     wp_die();
 }

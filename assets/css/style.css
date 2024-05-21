@@ -485,6 +485,7 @@ h1 {
 @media screen and (max-width: 770px) {
   .taxonomy-container {
     width: 100%;
+    margin-left:28px;
   }
 }
 
@@ -529,13 +530,6 @@ h1 {
 .right-section {
   align-items: flex-end;
 }
-
-/* Styles spécifiques pour le sélecteur 'Trier par' */
-#annees {
-  margin-left: auto;
-}
-
-
 /* CSS pour la page single-photo */
 
 .gallerie {
@@ -1217,6 +1211,32 @@ h1 {
 }
 
 /* Fin du  CSS pour la LightBox */
+
+/* Styles spécifiques pour le sélecteur 'Trier par' */
+
+#annees {
+  margin-left: auto;
+}
+
+/* Media query pour les écrans entre 768px et 320px */
+@media (max-width: 768px) and (min-width: 320px) {
+  #annees {
+    margin-left: 25px!important;
+  }
+  
+}
+.select2-hidden-accessible {
+  position: absolute;
+}
+
+/* Media query pour les écrans entre 767px et 320px */
+@media (max-width: 767px) and (min-width: 320px) {
+  .select2-hidden-accessible {
+    position: relative!important;
+  }
+}
+
+
 /* Masque le champ de recherche dans le menu déroulant de Select2 */
 .select2-dropdown .select2-search--dropdown .select2-search__field {
   display: none;

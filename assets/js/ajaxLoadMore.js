@@ -1,39 +1,56 @@
 // Chargement de plus d'images avec Ajax
-console.log("ajaxLoadMore : le script est lancé");
+console.log("ajax JS chargé");
 
-(function($) {
-    $('#more_images').click(function() {
-        var button = $(this),
-            data = {
-                'action': 'load_more',
-                'query': ajaxLoadMore.query_vars,
-                'page': button.data('page')
-            };
+jQuery(document).ready(function ($) {
+    function loadMorePhotos(paged) {
+        const page = paged ? $("#more_images").data("page") : 1;
+        const query_vars = $("#photoContainer").data("query_vars");
 
         $.ajax({
             url: ajaxLoadMore.ajaxurl,
-            data: data,
-            type: 'POST',
-            beforeSend: function(xhr) {
-                button.text('Chargement...');
+            type: "post",
+            data: {
+                action: "load_more",
+                query_vars: JSON.stringify(query_vars),
+                page: page
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
-                    button.data('page', button.data('page') - 1);
-                    $('#block_more_images').before($(response.data.html));
-                    button.text('Charger plus');
-                    
+                    if (paged) {
+                        $("#photoContainer").append(response.data.html);
+                        $("#more_images").data('page', page + 1); // Increment page number
+                    } else {
+                        $("#photoContainer").html(response.data.html);
+                        $("#more_images").data('page', 2); // Reset page number
+                    }
+
                     if (response.data.is_last_page) {
-                        button.remove();
+                        $("#more_images").hide();
+                    } else {
+                        $("#more_images").show();
                     }
                 } else {
-                    button.text('Plus de photos à charger');
-                    button.prop('disabled', true);
+                    $("#more_images").hide();
                 }
             },
-            error: function() {
-                button.text('Erreur de chargement');
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(thrownError);
+                console.log(ajaxOptions);
+                console.log(xhr.responseText);
             }
         });
+    }
+
+    $(document).on('click', '#more_images', function () {
+        loadMorePhotos(true);
     });
-})(jQuery);
+
+    // Initial load
+    const initialQueryVars = {
+        post_type: 'photos',
+        posts_per_page: 8,
+        paged: 1,
+    };
+    $("#photoContainer").data("query_vars", initialQueryVars);
+});
