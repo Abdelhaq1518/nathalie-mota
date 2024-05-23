@@ -44,10 +44,10 @@ $nextThumbnailURL = $nextPost ? get_the_post_thumbnail_url($nextPost->ID, 'thumb
 				<h2><?php echo get_the_title(); ?></h2>
 
 				<div class="taxonomies">
-					<p class="Majuscule">RÉFÉRENCE : <?php echo $reference ?></p>
-					<p class="Majuscule">CATÉGORIE : <?php echo $categorie_name ?></p>
-					<p class="Majuscule">FORMAT : <?php echo $formats_name ?> </p>
-					<p class="Majuscule">TYPE : <?php echo $type ?> </p>
+					<p class="photoData">RÉFÉRENCE : <?php echo $reference ?></p>
+					<p class="photoData">CATÉGORIE : <?php echo $categorie_name ?></p>
+					<p class="photoData">FORMAT : <?php echo $formats_name ?> </p>
+					<p class="photoData">TYPE : <?php echo $type ?> </p>
 					<p>ANNÉE : <?php echo $annee_name ?> </p>
 				</div>
 			</div>

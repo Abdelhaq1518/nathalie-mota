@@ -198,7 +198,6 @@ header .headerNav .navigation .menu_navigation li a:hover {
   }
 }
 
-
 /* Tablette */
 @media only screen and (min-width: 768px) and (max-width: 960px) {
   header {
@@ -270,7 +269,6 @@ p {
   font-family: PoppinsRegular;
   font-size: 14px;
 }
-
 
 /* Fin du CSS pour le body */
 /* Debut du CSS pour la Modale Popup de Contact */
@@ -419,7 +417,7 @@ h1 {
   gap: 10px;
 }
 
-.Majuscule {
+.photoData {
   text-transform: uppercase;
 }
 
@@ -659,15 +657,16 @@ h1 {
   transition: opacity 0.3s, visibility 0.3s;
 }
 
-.miniature, .miniature-left, .miniature-right {
-  visibility: 0; 
+.miniature,
+.miniature-left,
+.miniature-right {
+  visibility: 0;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s linear;
   width: 81px;
   height: 71px;
-  padding-top: 5px; 
+  padding-top: 5px;
 }
-
 
 .miniature a,
 .miniature-left a,
@@ -690,8 +689,6 @@ h1 {
   visibility: visible;
   opacity: 1;
 }
-
-
 
 .vousAimerezAussi {
   width: 80%;
@@ -719,9 +716,6 @@ h1 {
   font-size: 20px;
   text-align: center;
 }
-
-
-
 
 /*Debut du  CSS pour les  photos de la catégorie apparentée*/
 
@@ -1144,7 +1138,7 @@ h1 {
   }
 }
 
-/* Fin du  CSS pour la LightBox *//*Début du CSS pour la partie filtres*/
+/* Fin du  CSS pour la LightBox */ /*Début du CSS pour la partie filtres*/
 .filtre {
   margin-bottom: 40px;
 }
@@ -1167,7 +1161,7 @@ h1 {
 @media screen and (max-width: 770px) {
   .taxonomy-container {
     width: 100%;
-    margin-left:28px;
+    margin-left: 28px;
   }
 }
 
@@ -1213,7 +1207,6 @@ h1 {
   align-items: flex-end;
 }
 
-
 /* Styles spécifiques pour le sélecteur 'Trier par' */
 
 #annees {
@@ -1223,18 +1216,7 @@ h1 {
 /* Media query pour les écrans entre 768px et 320px */
 @media (max-width: 768px) and (min-width: 320px) {
   #annees {
-    margin-left: 25px!important;
-  }
-  
-}
-.select2-hidden-accessible {
-  position: absolute;
-}
-
-/* Media query pour les écrans entre 767px et 320px */
-@media (max-width: 767px) and (min-width: 320px) {
-  .select2-hidden-accessible {
-    position: relative!important;
+    margin-left: 25px !important;
   }
 }
 
@@ -1291,8 +1273,6 @@ h1 {
   text-transform: uppercase;
 }
 
-
-
 /* Styles pour la première option dans le menu déroulant */
 .select2-container--default
   .select2-results__option:not(:first-child)[aria-selected="true"] {
@@ -1313,5 +1293,3 @@ h1 {
     margin-bottom: 5px;
   }
 }
-
-

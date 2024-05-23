@@ -3,7 +3,7 @@ function display_random_photo_banner()
 {
     // Définition des arguments de la requête
     $photo_args = array(
-        'post_type' => 'motaphoto',
+        'post_type' => 'photos',
         'posts_per_page' => 1,
         'orderby' => 'rand',
     );

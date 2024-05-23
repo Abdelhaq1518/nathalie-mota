@@ -17,8 +17,8 @@ if ($categories && !is_wp_error($categories)) {
 
     <div class="overlay">
         <!-- Affichage du titre de la photo et de sa catégorie -->
-        <h2 class="Majuscule"><?php echo esc_html($photo_titre); ?></h2>
-        <h3 class="Majuscule"><?php echo esc_html($categorie_name); ?></h3>
+        <h2 class="photoData"><?php echo esc_html($photo_titre); ?></h2>
+        <h3 class="photoData"><?php echo esc_html($categorie_name); ?></h3>
 
         <!-- Bouton pour voir la photo -->
         <div class="eye-icon">
